@@ -692,6 +692,50 @@
     .newsletter {
       padding: 36px 0;
     }
+    .quick-contact-actions {
+      position: fixed;
+      right: calc(16px + env(safe-area-inset-right, 0px));
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .quick-contact-link {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,.22);
+      transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .quick-contact-link svg {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      fill: currentColor;
+    }
+    .quick-contact-whatsapp { background: #128c4a; }
+    .quick-contact-call { background: var(--brand-orange); }
+    .quick-contact-whatsapp:hover,
+    .quick-contact-whatsapp:focus-visible { background: #0e713c; }
+    .quick-contact-call:hover,
+    .quick-contact-call:focus-visible { background: var(--brand-orange-dark); }
+    .quick-contact-link:hover,
+    .quick-contact-link:focus-visible {
+      color: #fff;
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.28);
+    }
     .footer a:hover {
       color: #fff;
       text-decoration: underline;
@@ -758,6 +802,12 @@
       .portfolio-card .image { height: clamp(210px, 62vw, 260px); }
       .gallery-lightbox { width: calc(100vw - 24px); padding: 10px; }
       .gallery-close { top: -10px; right: -6px; }
+      .quick-contact-actions {
+        right: calc(12px + env(safe-area-inset-right, 0px));
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        gap: 8px;
+      }
+      .quick-contact-link { min-height: 44px; padding: 10px 13px; font-size: 14px; }
     }
     @media (max-width: 767px) {
       .why-choose-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1017,7 +1067,7 @@
             <p style="margin:8px 0 0; color:rgba(255,255,255,.75);">Tell us what needs attention and where the job is located to discuss an estimate.</p>
           </div>
           <div class="col-lg-6">
-            <p style="margin:20px 0 0; text-align:right; color:#fff;">Phone / WhatsApp and service area details will be added once provided.</p>
+            <p style="margin:20px 0 0; text-align:right; color:#fff;">Call or WhatsApp: <a href="tel:+918329254768" style="color:#fff; font-weight:700;">+91 832 925 4768</a></p>
           </div>
         </div>
       </div>
@@ -1031,7 +1081,7 @@
             <ul>
               <li>Painting, plumbing, civil, furniture, interior, and exterior work.</li>
               <li>Share your area to check service availability.</li>
-              <li>Phone / WhatsApp details to be added.</li>
+              <li><a href="tel:+918329254768">Call: +91 832 925 4768</a> · <a href="https://wa.me/918329254768" target="_blank" rel="noopener noreferrer">WhatsApp us</a></li>
             </ul>
           </div>
           <div class="col-lg-3 col-md-6">
