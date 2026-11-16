@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajay Painting, Plumbing &amp; Property Services</title>
+  <meta name="description" content="Painting, plumbing, civil work, furniture, and interior and exterior services for residential and commercial properties." />
+
+  <link rel="stylesheet" href="https://www.royalwoodartdesign.com/css/bootstrap.min.css" />
+
+  <style>
+    :root {
+      --brand-navy: #062b4f;
+      --brand-blue: #1468a8;
+      --brand-orange: #cc4e00;
+      --brand-orange-dark: #a63e00;
+      --brand-gold: #ffb547;
+      --brand-gray: #eef3f8;
+      --surface-warm: #fff4e8;
+      --surface-blue: #e8f1fa;
+      --border-color: #d6e0ea;
+      --text-color: #203344;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+    body {
+      margin: 0;
+      color: var(--text-color);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--brand-gray);
+      line-height: 1.6;
+    }
+    :focus-visible {
+      outline: 3px solid var(--brand-orange);
+      outline-offset: 3px;
+    }
+    .page {
+      overflow-x: clip;
+    }
+    .hero-visual {
+      background-image: url('images/projects/interior-finishing.png');
+      background-size: cover;
+      background-position: center;
+      min-height: clamp(500px, 80vh, 760px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      display: flex;
+      align-items: center;
+      min-height: inherit;
+      background: transparent;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-copy {
+      max-width: 820px;
+      padding: clamp(20px, 3vw, 36px) 0;
+      background: transparent;
+      color: #fff;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(0,0,0,.85);
+    }
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--brand-orange);
+    }
+    .hero-title {
+      max-width: 700px;
+      margin: 0 0 18px;
+      color: #fff;
+      font-size: clamp(40px, 5.4vw, 70px);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.06;
+      text-shadow: 0 3px 22px rgba(0,0,0,.8);
+    }
+    .hero-title span {
+      color: var(--brand-gold);
+    }
+    .hero-description {
+      max-width: 570px;
+      margin: 0 0 28px;
+      color: rgba(255,255,255,.88);
+      font-size: clamp(16px, 1.5vw, 19px);
+      text-shadow: 0 2px 14px rgba(0,0,0,.85);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .content-block {
+      padding: 82px 0;
+    }
+    .service-overview-section {
+      padding: 54px 0;
+      background: var(--surface-warm);
+    }
+    .service-overview-heading {
+      margin-bottom: 26px;
+      text-align: center;
+    }
+    .service-overview-heading .section-title {
+      margin-bottom: 0;
+    }
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .service-list a {
+      color: var(--brand-navy);
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .service-list a:hover,
+    .service-list a:focus-visible {
+      color: var(--brand-orange-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .service-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(6,43,79,.08);
+      overflow: hidden;
+      min-height: 100%;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .service-card:hover,
+    .service-card:focus-within {
+      transform: translateY(-5px);
+      border-color: var(--brand-orange);
+      box-shadow: 0 18px 38px rgba(6,43,79,.16);
+    }
+    .service-card .thumb {
+      display: flex;
+      align-items: center;
+      height: 54px;
+      padding: 14px 24px 0;
+      background: transparent;
+    }
+    .service-card-number {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--surface-warm);
+      color: var(--brand-orange);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+    .col-lg-4:nth-child(even) .service-card-number {
+      background: var(--surface-blue);
+      color: var(--brand-blue);
+    }
+    .service-card .card-body {
+      padding: 12px 24px 26px;
+    }
+    .service-card h5 {
+      color: var(--brand-navy);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      color: #5b6876;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .service-card a {
+      color: var(--brand-orange);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .service-card a:hover {
+      color: var(--brand-orange-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .section-label {
+      display: inline-block;
+      letter-spacing: 2px;
+      color: var(--brand-orange);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 800;
+      color: var(--brand-navy);
+      margin-bottom: 18px;
+      letter-spacing: -.025em;
+      line-height: 1.2;
+    }
+    .btn-primary-custom {
+      background: var(--brand-orange);
+      border-color: var(--brand-orange);
+      color: #fff;
+      border-radius: 8px;
+      padding: 13px 22px;
+      font-weight: 700;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(204,78,0,.2);
+      transition: background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+    .btn-primary-custom:hover,
+    .btn-primary-custom:focus-visible {
+      background: var(--brand-orange-dark);
+      border-color: var(--brand-orange-dark);
+      color: #fff;
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(166,62,0,.3);
+    }
+    .btn-secondary-custom {
+      display: inline-block;
+      padding: 12px 21px;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .btn-secondary-custom:hover,
+    .btn-secondary-custom:focus-visible {
+      transform: translateY(-2px);
+      background: #fff;
+      color: var(--brand-navy);
+      text-decoration: none;
+    }
+    .about-block {
+      background: #fff;
+      padding: clamp(26px, 4vw, 42px);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(6,43,79,.1);
+    }
+    .about-block p {
+      color: #5b5b5b;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+    .stat-box {
+      text-align: center;
+      background: var(--brand-navy);
+      color: #fff;
+      padding: 22px 12px;
+      border-radius: 10px;
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stat-box strong {
+      font-size: 42px;
+      font-weight: 800;
+      display: block;
+      color: var(--brand-orange);
+    }
+    .stat-box span {
+      font-size: 17px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .experience-photo {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 20px 46px rgba(6,43,79,.18);
+    }
+    .experience-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+    .experience-badge {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: rgba(6,43,79,.96);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,.2);
+    }
+    .experience-badge strong {
+      color: var(--brand-orange);
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .experience-badge span {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .latest-work {
+      background: linear-gradient(180deg, var(--surface-blue), #fff);
+    }
+    .portfolio-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 8px 22px rgba(6,43,79,.1);
+      border-radius: 14px;
+      overflow: hidden;
+      height: 100%;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(6,43,79,.18);
+    }
+    .portfolio-card .image {
+      height: 250px;
+      overflow: hidden;
+      background: var(--surface-blue);
+    }
+    .gallery-image-button {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+    .portfolio-card .image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+    .portfolio-card .image video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #111;
+    }
+    .portfolio-card:hover .image img,
+    .gallery-image-button:focus-visible img {
+      transform: scale(1.04);
+    }
+    .portfolio-card .body {
+      padding: 18px 20px 22px;
+    }
+    .portfolio-card h5 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--brand-navy);
+    }
+    .portfolio-card p {
+      color: #666;
+      margin: 0;
+      line-height: 1.7;
+    }
+    .why-choose-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .why-choose-list li {
+      padding: 20px 14px;
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--brand-orange);
+      border-radius: 12px;
+      background: var(--surface-warm);
+      color: var(--brand-navy);
+      font-weight: 700;
+      text-align: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .why-choose-list li:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(6,43,79,.12);
+    }
+    .faq-list {
+      display: grid;
+      max-width: 900px;
+      gap: 12px;
+      margin: 0 auto;
+    }
+    .faq-list details {
+      padding: 16px 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .faq-list details[open] {
+      border-color: var(--brand-orange);
+      box-shadow: 0 10px 24px rgba(6,43,79,.08);
+    }
+    .faq-list summary {
+      color: var(--brand-navy);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .faq-list summary::marker {
+      color: var(--brand-orange);
+    }
+    .faq-list p {
+      margin: 12px 0 0;
+      color: #5b6876;
+    }
+    .map-box {
+      background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 28px rgba(0,0,0,.05);
+    }
+    .map-box iframe {
+      width: 100%; height: 340px; border: 0; display: block;
+    }
+    .newsletter {
+      background: linear-gradient(90deg, var(--brand-navy), #073e70);
+      color: #fff;
+      padding: 26px 0;
+    }
+    .footer {
+      background: var(--brand-navy);
+      color: rgba(255,255,255,.8);
+      padding-top: 70px;
+      padding-bottom: 30px;
+    }
+    .footer a {
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+    }
+    .footer h3 {
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .footer ul {
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+    .footer li {
+      margin-bottom: 12px;
+    }
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin-top: 30px; padding-top: 20px;
+      color: rgba(255,255,255,.7);
+    }
+    .footer a.created-by-credit {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 14px;
+      border-radius: 8px;
+      background: var(--brand-orange);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+    .footer a.created-by-credit:hover,
+    .footer a.created-by-credit:focus-visible {
+      background: var(--brand-orange-dark);
+      color: #fff;
+      text-decoration: none;
+    }
+    .ajay-site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid var(--surface-warm);
+      box-shadow: 0 8px 24px rgba(6,43,79,.1);
+    }
+    .ajay-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6px 24px;
+    }
+    .ajay-brand {
+      display: block;
+      flex: 0 0 auto;
+    }
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .nav-toggle span {
+      display: block;
+      height: 2px;
+      margin: 4px 0;
+      border-radius: 2px;
+      background: var(--brand-navy);
+    }
+    .ajay-brand-logo {
+      display: block;
+      width: 128px;
+      height: 90px;
+      object-fit: contain;
+    }
+    #ajay-primary-nav {
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 2px;
+      flex: 1 1 auto;
+      min-width: 0;
+      min-height: 90px;
+      padding: 0;
+      box-sizing: border-box;
+      background: transparent !important;
+      position: relative !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      z-index: 1001;
+    }
+    #ajay-primary-nav a {
+      display: inline-block !important;
+      padding: 12px 13px;
+      color: var(--brand-navy) !important;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-decoration: none !important;
+      white-space: nowrap;
+      border-radius: 7px;
+      transition: color .2s ease, background .2s ease, transform .2s ease;
+    }
+    #ajay-primary-nav a:hover,
+    #ajay-primary-nav a:focus-visible {
+      color: var(--brand-navy) !important;
+      background: var(--surface-warm);
+    }
+    #ajay-primary-nav a:last-child {
+      margin-left: 6px;
+      background: var(--brand-orange);
+      color: #fff !important;
+      box-shadow: 0 6px 16px rgba(204,78,0,.22);
+    }
+    #ajay-primary-nav a:last-child:hover,
+    #ajay-primary-nav a:last-child:focus-visible {
+      background: var(--brand-orange-dark);
+    }
+    .gallery-controls {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: -20px 0 32px;
+    }
+    .gallery-filter {
+      padding: 9px 18px;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--brand-navy);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+    }
+    .gallery-filter:hover,
+    .gallery-filter[aria-pressed="true"] {
+      border-color: var(--brand-navy);
+      background: var(--brand-navy);
+      color: #fff;
+    }
+    .gallery-lightbox {
+      position: fixed;
+      width: min(94vw, 1100px);
+      max-width: none;
+      max-height: 92vh;
+      padding: 18px;
+      overflow: visible;
+      border: 0;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+    .gallery-lightbox::backdrop {
+      background: rgba(4,17,32,.84);
+      backdrop-filter: blur(3px);
+    }
+    .gallery-lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(92vh - 36px);
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .gallery-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--brand-orange);
+      color: #fff;
+      font-size: 25px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    }
+    .process-step {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(6,43,79,.08);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .process-step:hover {
+      transform: translateY(-3px);
+      border-color: var(--brand-orange);
+      box-shadow: 0 14px 30px rgba(6,43,79,.14);
+      font-weight: 600;
+    }
+    .process-step strong {
+      color: var(--brand-orange);
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+    .newsletter {
+      padding: 36px 0;
+    }
+    .footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    @media (max-width: 991px) {
+      .ajay-header-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0;
+        padding: 6px 16px;
+      }
+      .ajay-brand {
+        max-width: 100%;
+      }
+      .ajay-brand-logo {
+        width: 112px;
+        height: 78px;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      #ajay-primary-nav {
+        display: none !important;
+        flex: 1 0 100%;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 0;
+        gap: 2px;
+        padding: 8px 0 10px;
+        background: #fff !important;
+      }
+      #ajay-primary-nav.is-open {
+        display: flex !important;
+      }
+      #ajay-primary-nav a {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+      #ajay-primary-nav a:last-child {
+        margin-left: 0;
+      }
+    }
+    @media (max-width: 575px) {
+      html { scroll-padding-top: 90px; }
+      .content-block { padding: 56px 0; }
+      .ajay-header-inner { padding: 4px 12px; }
+      .ajay-brand-logo { width: 100px; height: 70px; }
+      .hero-visual { min-height: 540px; }
+      .hero-copy { padding: 24px 0; }
+      .hero-title { font-size: clamp(34px, 10.5vw, 50px); }
+      .hero-eyebrow { font-size: 11px; letter-spacing: .08em; }
+      .experience-photo,
+      .experience-photo img { min-height: clamp(280px, 82vw, 420px); }
+      .service-overview-section { padding: 40px 0; }
+      .service-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+      .service-list a { font-size: 16px; }
+      .hero-actions { gap: 10px; }
+      .btn-primary-custom, .btn-secondary-custom { padding: 11px 13px; font-size: 13px; }
+      .portfolio-card .image { height: clamp(210px, 62vw, 260px); }
+      .gallery-lightbox { width: calc(100vw - 24px); padding: 10px; }
+      .gallery-close { top: -10px; right: -6px; }
+    }
+    @media (max-width: 767px) {
+      .why-choose-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .newsletter .row > div:last-child p {
+        margin-top: 12px !important;
+        text-align: left !important;
+      }
+      .map-box iframe { height: 280px; }
+    }
+    @media (max-width: 360px) {
+      .hero-title { font-size: 34px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions a { text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="ajay-site-header">
+      <div class="ajay-header-inner">
+        <a class="ajay-brand" href="#home" aria-label="Ajay Plumbing and Painting home">
+          <img class="ajay-brand-logo" src="images/brand/ajay-construction.png" alt="Ajay Construction - Painting and Plumbing" />
+        </a>
+        <button class="nav-toggle" type="button" aria-controls="ajay-primary-nav" aria-expanded="false" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="ajay-primary-nav" aria-label="Main navigation">
+          <a href="index.html#home">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="index.html#contact">Contact Us</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="hero-visual" id="home">
+      <video class="hero-video" id="hero-video" muted autoplay playsinline preload="auto" aria-hidden="true"></video>
+      <div class="hero-overlay">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-7 col-md-10">
+              <div class="hero-copy">
+                <p class="hero-eyebrow">Painting · Plumbing · Civil Work · Furniture</p>
+                <h1 class="hero-title">Property Services <span>Under One Roof</span></h1>
+                <p class="hero-description">
+                  Interior and exterior work, painting, plumbing, civil work, and furniture services for homes and businesses.
+                </p>
+                <div class="hero-actions">
+                  <a class="btn-primary-custom" href="services.html">View Services</a>
+                  <a class="btn-secondary-custom" href="#contact">Request an Estimate</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="service-overview-section" aria-labelledby="services-overview-title">
+      <div class="container">
+        <div class="service-overview-heading">
+          <div class="section-label">Our Services</div>
+          <h2 class="section-title" id="services-overview-title">What We Do</h2>
+        </div>
+        <ul class="service-list" aria-label="Services offered">
+          <li><a href="painting.html">Painting (Interior &amp; Exterior)</a></li>
+          <li><a href="plumbing.html">Plumbing Work</a></li>
+          <li><a href="civil-work.html">Civil Work</a></li>
+          <li><a href="furniture.html">Furniture Work</a></li>
+          <li><a href="interior-work.html">Interior Work</a></li>
+          <li><a href="exterior-work.html">Exterior Work</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-block" id="about">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-5 col-md-6 mb-4">
+            <div class="experience-photo">
+              <img src="images/projects/interior-painting.png" alt="Painter working on an interior wall, with his face visible in profile" decoding="async" />
+              <div class="experience-badge">
+                <strong>10+</strong>
+                <span>Years of<br />Experience</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-6 mb-4">
+            <div class="about-block">
+              <div class="section-label">About Our Service</div>
+              <h2 class="section-title">One Team for Interior, Exterior &amp; Property Work</h2>
+              <p>Ajay Plumbing &amp; Painting offers painting, plumbing, civil work, furniture, and interior and exterior services for residential and commercial properties.</p>
+              <p>Share the work you need and your location so the scope, estimate, and service availability can be confirmed before scheduling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block latest-work" id="services">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">What We Do</div>
+          <h2 class="section-title">Painting, Plumbing &amp; Property Services</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <article class="service-card" id="painting">
+              <div class="thumb"><span class="service-card-number" aria-hidden="true">01</span></div>
+              <div class="card-body">
+                <h5>Painting (Interior &amp; Exterior)</h5>
+                <p>Interior and exterior painting for walls and suitable surfaces, including preparation and finishing.</p>
+                <a href="painting.html">View Details</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <article class="service-card" id="plumbing">
+              <div class="thumb"><span class="service-card-number" aria-hidden="true">02</span></div>
+              <div class="card-body">
+                <h5>Plumbing Work</h5>
+                <p>Plumbing repairs and installation work. Share the issue and location to confirm the scope and availability.</p>
+                <a href="plumbing.html">View Details</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <article class="service-card" id="civil-work">
+              <div class="thumb"><span class="service-card-number" aria-hidden="true">03</span></div>
+              <div class="card-body">
+                <h5>Civil Work</h5>
+                <p>Civil work and property improvements for residential or commercial projects, based on the agreed requirements.</p>
+                <a href="civil-work.html">View Details</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <article class="service-card" id="furniture">
+              <div class="thumb"><span class="service-card-number" aria-hidden="true">04</span></div>
+              <div class="card-body">
+                <h5>Furniture Work</h5>
+                <p>Furniture-related work for your space. Share the details so the suitable work and availability can be confirmed.</p>
+                <a href="furniture.html">View Details</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <article class="service-card" id="interior-work">
+              <div class="thumb"><span class="service-card-number" aria-hidden="true">05</span></div>
+              <div class="card-body">
+                <h5>Interior Work</h5>
+                <p>Interior improvements and finishing for homes and businesses, planned around the specific project requirements.</p>
+                <a href="interior-work.html">View Details</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <article class="service-card" id="exterior-work">
+              <div class="thumb"><span class="service-card-number" aria-hidden="true">06</span></div>
+              <div class="card-body">
+                <h5>Exterior Work</h5>
+                <p>Exterior improvements and finishing for suitable building surfaces and property projects.</p>
+                <a href="exterior-work.html">View Details</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block" id="home-work">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">Our Work</div>
+          <h2 class="section-title">Project Photos &amp; Videos</h2>
+        </div>
+        <div class="row g-4" id="homepage-work-grid" aria-label="Project photos and videos"></div>
+        <div class="text-center mt-4">
+          <a class="btn-primary-custom" href="gallery.html">View Full Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block" id="why-choose-us">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">Why Choose Us</div>
+          <h2 class="section-title">Why Choose Ajay Plumbing &amp; Painting?</h2>
+        </div>
+        <ul class="why-choose-list">
+          <li>Affordable Pricing</li>
+          <li>Quality Work</li>
+          <li>On-Time Delivery</li>
+          <li>Expert Team</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-block" id="service-area">
+      <div class="container">
+        <div class="mb-5 text-center">
+          <div class="section-label">Service Area</div>
+          <h2 class="section-title">Services for Your Property</h2>
+        </div>
+        <div class="about-block text-center">
+          <p>Painting, plumbing, civil work, furniture, and interior or exterior projects are considered for residential and commercial properties. Share your location and job details to confirm scope and availability.</p>
+          <a class="btn-primary-custom" href="#contact">Ask About Your Area</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block" id="faqs">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">FAQs</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>What services do you provide?</summary>
+            <p>We provide painting, plumbing, civil work, furniture, interior, and exterior services.</p>
+          </details>
+          <details>
+            <summary>Do you work on homes and businesses?</summary>
+            <p>Yes. Services are considered for residential and commercial properties.</p>
+          </details>
+          <details>
+            <summary>How can I request an estimate?</summary>
+            <p>Share the work you need and your location so the scope, estimate, and availability can be discussed before scheduling.</p>
+          </details>
+          <details>
+            <summary>Do you provide services in my area?</summary>
+            <p>Share your location to confirm service availability for your project.</p>
+          </details>
+          <details>
+            <summary>When will the work be scheduled?</summary>
+            <p>Once the scope is clear, a suitable schedule can be agreed based on the location, job requirements, and availability.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter" id="contact">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div style="font-size:28px; font-weight:700;">Need Property Work?</div>
+            <p style="margin:8px 0 0; color:rgba(255,255,255,.75);">Tell us what needs attention and where the job is located to discuss an estimate.</p>
+          </div>
+          <div class="col-lg-6">
+            <p style="margin:20px 0 0; text-align:right; color:#fff;">Phone / WhatsApp and service area details will be added once provided.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <h3>Get In Touch</h3>
+            <ul>
+              <li>Painting, plumbing, civil, furniture, interior, and exterior work.</li>
+              <li>Share your area to check service availability.</li>
+              <li>Phone / WhatsApp details to be added.</li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h3>Useful Links</h3>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="gallery.html">Our Work</a></li>
+              <li><a href="how-it-works.html">How It Works</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="painting.html">Interior &amp; Exterior Painting</a></li>
+              <li><a href="plumbing.html">Plumbing Work</a></li>
+              <li><a href="civil-work.html">Civil Work</a></li>
+              <li><a href="furniture.html">Furniture Work</a></li>
+              <li><a href="interior-work.html">Interior Work</a></li>
+              <li><a href="exterior-work.html">Exterior Work</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h3>Get an Estimate</h3>
+            <p>Share the service you need and your location so availability can be confirmed.</p>
+            <a href="index.html#contact" style="color:var(--brand-orange); font-weight:600;">Request a Free Estimate</a>
+          </div>
+        </div>
+
+        <div class="copyright d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div>Copyright © 2026 <strong>Ajay Plumbing &amp; Painting</strong>. All rights reserved.</div>
+          <a class="created-by-credit" href="https://indianexportwebmart.com/" target="_blank" rel="noopener noreferrer">Created by Indian Export Webmart</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script type="module">
+    import "./site-pages.js";
+
+    const excludedAssets = new Set([
+      "image copy 2.png",
+      "image copy 3.png",
+      "image copy 4.png",
+      "image copy 5.png",
+      "image copy 33.png",
+      "image copy 44.png",
+      "image copy.png",
+      "image.png",
+      "WhatsApp Video 2026-11-16 at 12.24.14 PM (1) copy.mp4"
+    ]);
+    const mediaAssets = Object.entries(import.meta.glob([
+      "/*.png",
+      "/images/projects/*.{png,jpg,jpeg,webp}",
+      "/*.mp4"
+    ], { eager: true, import: "default", query: "?url" }))
+      .filter(([assetPath]) => !excludedAssets.has(assetPath.split("/").pop()))
+      .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath, undefined, { numeric: true }));
+    const heroVideo = document.getElementById("hero-video");
+    const heroVideoAsset = mediaAssets.find(([assetPath]) =>
+      assetPath.endsWith("/WhatsApp Video 2026-11-16 at 12.24.13 PM.mp4")
+    );
+
+    if (heroVideo && heroVideoAsset) {
+      heroVideo.src = heroVideoAsset[1];
+      heroVideo.loop = true;
+      const playback = heroVideo.play();
+      if (playback) playback.catch(() => {});
+    }
+
+    const homepageWorkGrid = document.getElementById("homepage-work-grid");
+    if (homepageWorkGrid) {
+      const photoTitles = new Map([
+        ["exterior-project.png", "Exterior Project"],
+        ["exterior-wall-work.png", "Exterior Wall Work"],
+        ["facade-finishing.png", "Building Facade"],
+        ["interior-finishing.png", "Interior Finishing"],
+        ["interior-painting.png", "Interior Painting"]
+      ]);
+      const videoTitles = new Map([
+        ["WhatsApp Video 2026-11-16 at 12.24.13 PM.mp4", "Project Video 01"],
+        ["WhatsApp Video 2026-11-16 at 12.24.14 PM.mp4", "Project Video 02"],
+        ["WhatsApp Video 2026-11-16 at 12.24.14 PM (1).mp4", "Project Video 03"]
+      ]);
+      const selectedPhotos = new Set(photoTitles.keys());
+
+      for (const [assetPath, assetUrl] of mediaAssets) {
+        const fileName = assetPath.split("/").pop();
+        const isVideo = /\.(mp4|webm|mov|m4v)$/i.test(fileName);
+        if (!isVideo && !selectedPhotos.has(fileName)) continue;
+
+        const title = isVideo ? (videoTitles.get(fileName) || "Project Video") : photoTitles.get(fileName);
+        const column = document.createElement("div");
+        column.className = "col-lg-4 col-md-6";
+        const card = document.createElement("article");
+        card.className = "portfolio-card";
+        const mediaFrame = document.createElement("div");
+        mediaFrame.className = "image";
+
+        if (isVideo) {
+          const video = document.createElement("video");
+          video.src = assetUrl;
+          video.controls = true;
+          video.preload = "metadata";
+          video.playsInline = true;
+          video.setAttribute("aria-label", title);
+          mediaFrame.append(video);
+        } else {
+          const image = document.createElement("img");
+          image.src = assetUrl;
+          image.alt = title;
+          image.loading = "lazy";
+          image.decoding = "async";
+          mediaFrame.append(image);
+        }
+
+        const body = document.createElement("div");
+        body.className = "body";
+        const heading = document.createElement("h5");
+        heading.textContent = title;
+        const caption = document.createElement("p");
+        caption.textContent = isVideo ? "Project video." : "Project photo.";
+        body.append(heading, caption);
+        card.append(mediaFrame, body);
+        column.append(card);
+        homepageWorkGrid.append(column);
+      }
+    }
+
+  </script>
+</body>
+</html>

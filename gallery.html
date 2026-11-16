@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Gallery | Ajay Plumbing &amp; Painting</title>
+  <meta name="description" content="Browse project photos and videos from Ajay Plumbing & Painting Services." />
+  <link rel="stylesheet" href="/pages.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="site-brand" href="index.html#home" aria-label="Ajay Plumbing and Painting home">
+          <img src="/images/brand/ajay-construction.png" alt="Ajay Construction - Painting and Plumbing" />
+        </a>
+        <button class="nav-toggle" type="button" aria-controls="ajay-primary-nav" aria-expanded="false" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="ajay-primary-nav" aria-label="Main navigation">
+          <a href="index.html#home">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="gallery.html" aria-current="page">Gallery</a>
+          <a href="index.html#contact">Contact Us</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-content">
+        <div class="site-container">
+          <h1 class="gallery-page-title">Project Gallery</h1>
+          <div class="gallery-controls" role="group" aria-label="Filter project gallery">
+            <button class="gallery-filter" type="button" data-filter="all" aria-pressed="true">All work</button>
+            <button class="gallery-filter" type="button" data-filter="photo" aria-pressed="false">Photos</button>
+            <button class="gallery-filter" type="button" data-filter="video" aria-pressed="false">Videos</button>
+          </div>
+          <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="gallery-lightbox" id="gallery-lightbox" aria-label="Project photo viewer">
+      <form method="dialog">
+        <button class="gallery-close" type="submit" aria-label="Close photo viewer">&times;</button>
+      </form>
+      <img id="gallery-lightbox-image" alt="" />
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="site-container site-footer-inner">
+        <span>Copyright © 2026 Ajay Plumbing &amp; Painting.</span>
+        <span><a href="index.html#home">Home</a> · <a href="how-it-works.html">How It Works</a> · <a href="index.html#contact">Contact</a></span>
+        <a class="created-by-credit" href="https://indianexportwebmart.com/" target="_blank" rel="noopener noreferrer">Created by Indian Export Webmart</a>
+      </div>
+    </footer>
+  </div>
+  <script type="module">
+    import "/site-pages.js";
+
+    const galleryGrid = document.getElementById("gallery-grid");
+    const excludedAssets = new Set([
+      "image copy 2.png",
+      "image copy 3.png",
+      "image copy 4.png",
+      "image copy 5.png",
+      "image copy 33.png",
+      "image copy 44.png",
+      "image copy.png",
+      "image.png",
+      "WhatsApp Video 2026-11-16 at 12.24.14 PM (1) copy.mp4"
+    ]);
+    const mediaAssets = Object.entries(import.meta.glob([
+      "/*.png",
+      "/images/projects/*.{png,jpg,jpeg,webp}",
+      "/*.mp4"
+    ], { eager: true, import: "default", query: "?url" }))
+      .filter(([assetPath]) => !excludedAssets.has(assetPath.split("/").pop()))
+      .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath, undefined, { numeric: true }));
+
+    const photoTitles = {
+      "exterior-project.png": "Exterior Project",
+      "exterior-wall-work.png": "Exterior Wall Work",
+      "facade-finishing.png": "Building Facade",
+      "interior-finishing.png": "Interior Finishing",
+      "interior-painting.png": "Interior Painting"
+    };
+    const videoTitles = {
+      "WhatsApp Video 2026-11-16 at 12.24.13 PM.mp4": "Project Video 01",
+      "WhatsApp Video 2026-11-16 at 12.24.14 PM.mp4": "Project Video 02",
+      "WhatsApp Video 2026-11-16 at 12.24.14 PM (1).mp4": "Project Video 03"
+    };
+
+    const galleryFilters = [...document.querySelectorAll(".gallery-filter")];
+    const lightbox = document.getElementById("gallery-lightbox");
+    const lightboxImage = document.getElementById("gallery-lightbox-image");
+
+    galleryFilters.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        galleryFilters.forEach((filterButton) => {
+          filterButton.setAttribute("aria-pressed", String(filterButton === button));
+        });
+        [...galleryGrid.children].forEach((card) => {
+          card.hidden = filter !== "all" && card.dataset.type !== filter;
+        });
+      });
+    });
+
+    galleryGrid.addEventListener("click", (event) => {
+      const button = event.target.closest(".gallery-image-button");
+      if (!button) return;
+      const image = button.querySelector("img");
+      lightboxImage.src = image.currentSrc || image.src;
+      lightboxImage.alt = image.alt;
+      lightbox.showModal();
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) lightbox.close();
+    });
+
+    for (const [assetPath, assetUrl] of mediaAssets) {
+      const fileName = assetPath.split("/").pop();
+      const isVideo = /\.(mp4|webm|mov|m4v)$/i.test(fileName);
+      const photoNumber = fileName.match(/(?:work-photo-|image copy )(\d+)/i);
+      const title = photoTitles[fileName] || videoTitles[fileName]
+        || `Project Photo ${photoNumber ? photoNumber[1] : ""}`;
+      const card = document.createElement("article");
+      card.className = "gallery-card";
+      card.dataset.type = isVideo ? "video" : "photo";
+
+      const mediaFrame = document.createElement("div");
+      mediaFrame.className = "gallery-media";
+      if (isVideo) {
+        const video = document.createElement("video");
+        video.src = assetUrl;
+        video.controls = true;
+        video.preload = "metadata";
+        video.playsInline = true;
+        video.setAttribute("aria-label", title);
+        mediaFrame.append(video);
+      } else {
+        const image = document.createElement("img");
+        image.src = assetUrl;
+        image.alt = title;
+        image.loading = "lazy";
+        image.decoding = "async";
+        const imageButton = document.createElement("button");
+        imageButton.className = "gallery-image-button";
+        imageButton.type = "button";
+        imageButton.setAttribute("aria-label", `View ${title} larger`);
+        imageButton.append(image);
+        mediaFrame.append(imageButton);
+      }
+
+      const copy = document.createElement("div");
+      copy.className = "gallery-card-copy";
+      const heading = document.createElement("h2");
+      heading.textContent = title;
+      const caption = document.createElement("p");
+      caption.textContent = isVideo ? "Project video." : "Project photo.";
+      copy.append(heading, caption);
+      card.append(mediaFrame, copy);
+      galleryGrid.append(card);
+    }
+  </script>
+</body>
+</html>
